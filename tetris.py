@@ -67,7 +67,7 @@ class Game_Grid:
         print("in update")
 
     def draw(self,DISPLAY):
-        print("in draw")
+        print("gamegriddraw")
         WHITE=(255,255,255)
         red = (255,0,0)
         blue=(155,255,255)
@@ -86,6 +86,7 @@ class Game_Grid:
             self.row(DISPLAY, WHITE,x,y,length,height)
             y=y+35
     def row(self,DISPLAY, colour,x,y, length, height):
+        print("in row")
         for i in range(10):
             if i % 2 == 0:
                 pygame.draw.rect(DISPLAY,colour, (x+1, y, length, height))
@@ -100,8 +101,6 @@ def main(winstyle = 0):
     if pygame.mixer and not pygame.mixer.get_init():
         print ('Warning, no sound')
         pygame.mixer = None
-
-
     game_grid = Game_Grid()
     winstyle = 0  # |FULLSCREEN
     bestdepth = pygame.display.mode_ok(SCREENRECT.size, winstyle, 32)
@@ -122,6 +121,7 @@ def main(winstyle = 0):
                 (event.type == KEYDOWN and event.key == K_ESCAPE):
                     return
         keystate = pygame.key.get_pressed()
+        pygame.display.update()
         game_grid.draw(screen)
 
 
