@@ -1,7 +1,3 @@
-#Conner White
-#05/12/2016
-
-#making the method for class music
 import random, os.path
 import pygame
 from pygame.locals import *
@@ -11,7 +7,7 @@ Teacher: I. McTavish
 Date: Dec 1, 2016"""
 
 #Global Variables
-SCREENRECT     = Rect(0, 0, 640, 480)
+SCREENRECT     = Rect(0, 0, 370, 720)
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 class Score:
     def __init__(self):
@@ -70,8 +66,33 @@ class Game_Grid:
     def update(self):
         print("in update")
 
-    def draw(self):
+    def draw(self,DISPLAY):
         print("in draw")
+        WHITE=(255,255,255)
+        red = (255,0,0)
+        blue=(155,255,255)
+        black=(0,0,0)
+
+        length = 33
+        height = 33
+
+        DISPLAY.fill(blue)
+        pygame.draw.rect(DISPLAY,black, (9, 9, 352, 702))
+
+        x=10
+        y=11
+
+        for nr in range(20):
+            self.row(DISPLAY, WHITE,x,y,length,height)
+            y=y+35
+    def row(self,DISPLAY, colour,x,y, length, height):
+        for i in range(10):
+            if i % 2 == 0:
+                pygame.draw.rect(DISPLAY,colour, (x+1, y, length, height))
+                x = x + 35
+            else:
+                pygame.draw.rect(DISPLAY,colour, (x+1, y, length, height))
+                x = x + 35
 
 def main(winstyle = 0):
     # Initialize pygame
@@ -80,6 +101,8 @@ def main(winstyle = 0):
         print ('Warning, no sound')
         pygame.mixer = None
 
+
+    game_grid = Game_Grid()
     winstyle = 0  # |FULLSCREEN
     bestdepth = pygame.display.mode_ok(SCREENRECT.size, winstyle, 32)
     screen = pygame.display.set_mode(SCREENRECT.size, winstyle, bestdepth)
@@ -99,6 +122,7 @@ def main(winstyle = 0):
                 (event.type == KEYDOWN and event.key == K_ESCAPE):
                     return
         keystate = pygame.key.get_pressed()
+        game_grid.draw(screen)
 
 
 
