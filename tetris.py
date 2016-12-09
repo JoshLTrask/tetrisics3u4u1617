@@ -7,7 +7,7 @@ Teacher: I. McTavish
 Date: Dec 1, 2016"""
 
 #Global Variables
-SCREENRECT     = Rect(0, 0, 370, 720)
+SCREENRECT     = Rect((320,620),0,32)
 main_dir = os.path.split(os.path.abspath(__file__))[0]
 class Score:
     def __init__(self):
@@ -73,27 +73,26 @@ class Game_Grid:
         blue=(155,255,255)
         black=(0,0,0)
 
-        length = 33
-        height = 33
+        length = 28
+        height = 28
 
         DISPLAY.fill(blue)
-        pygame.draw.rect(DISPLAY,black, (9, 9, 352, 702))
+        pygame.draw.rect(DISPLAY,black, (9, 9, 302, 602))
 
         x=10
         y=11
 
         for nr in range(20):
             self.row(DISPLAY, WHITE,x,y,length,height)
-            y=y+35
+            y=y+30
     def row(self,DISPLAY, colour,x,y, length, height):
-        print("in row")
         for i in range(10):
             if i % 2 == 0:
                 pygame.draw.rect(DISPLAY,colour, (x+1, y, length, height))
-                x = x + 35
+                x = x + 30
             else:
                 pygame.draw.rect(DISPLAY,colour, (x+1, y, length, height))
-                x = x + 35
+                x = x + 30
 
 def main(winstyle = 0):
     # Initialize pygame
